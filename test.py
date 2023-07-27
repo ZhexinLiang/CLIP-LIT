@@ -23,8 +23,8 @@ parser.add_argument('-c', '--ckpt', help='test ckpt path', default='./pretrained
 
 args = parser.parse_args()
 
-# DCE_net = model_small.UNet_emb_oneBranch_symmetry_noreflect(3,1)
-DCE_net = model_small.UNet_emb_oneBranch_symmetry(3,1)
+# U_net = model_small.UNet_emb_oneBranch_symmetry_noreflect(3,1)
+U_net = model_small.UNet_emb_oneBranch_symmetry(3,1)
 
 state_dict = torch.load(args.ckpt)
 
@@ -34,9 +34,9 @@ new_state_dict = OrderedDict()
 for k, v in state_dict.items():
 	name = k[7:] # remove `module.`
 	new_state_dict[name] = v
-DCE_net.load_state_dict(new_state_dict)
-DCE_net.cuda()
-#DCE_net.load_state_dict(torch.load('./pretrained_models/enhancement_model.pth'))
+U_net.load_state_dict(new_state_dict)
+U_net.cuda()
+#U_net.load_state_dict(torch.load('./pretrained_models/enhancement_model.pth'))
 
 def lowlight(image_path): 
 
@@ -48,7 +48,7 @@ def lowlight(image_path):
 	data_lowlight = data_lowlight.unsqueeze(0) 
 
 	# start = time.time()
-	light_map = DCE_net(data_lowlight)
+	light_map = U_net(data_lowlight)
 	enhanced_image = torch.clamp((data_lowlight / light_map), 0, 1)
 	# end_time = (time.time() - start)
 

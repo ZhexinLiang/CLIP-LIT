@@ -11,7 +11,7 @@ S-Lab, Nanyang Technological University
 ### Update
 - **2023.07.27**: Test codes, dataset and enhancement model checkpoint are public available now.
 
-### TODO
+### TODO (will release all the code and checkpoints within 4 days)
 - [x] Add training code and config files.
 - [x] Add prompt pair checkpoints.
 
@@ -50,7 +50,7 @@ The path of input images and output images and checkpoints can be changed.
 
 Example usage:
 ```
-python test.py -i ./Backlit300 -o ./inference_results/Backlit300 -c /data/CLIP-LIT/pretrained_models/enhancement_model.pth
+python test.py -i ./Backlit300 -o ./inference_results/Backlit300 -c ./pretrained_models/enhancement_model.pth
 ```
 
 <!-- ### Training: -->

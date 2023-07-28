@@ -3,11 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class UNet_emb_oneBranch_symmetry_noreflect(nn.Module):
-    """Custom U-Net architecture for Noise2Noise (see Appendix, Table 2)."""
 
     def __init__(self, in_channels=3, out_channels=3,bias=False):
-        """Initializes U-Net."""
-
         super(UNet_emb_oneBranch_symmetry_noreflect, self).__init__()
 
         self.cond1 = nn.Conv2d(in_channels,32,3,1,1,bias=True) 
@@ -30,8 +27,6 @@ class UNet_emb_oneBranch_symmetry_noreflect(nn.Module):
 
 
     def _init_weights(self):
-        """Initializes weights using He et al. (2015)."""
-
         for m in self.modules():
             if isinstance(m, nn.ConvTranspose2d) or isinstance(m, nn.Conv2d):
                 #nn.init.kaiming_normal_(m.weight.data)
@@ -61,11 +56,8 @@ class UNet_emb_oneBranch_symmetry_noreflect(nn.Module):
         return light_map
 
 class UNet_emb_oneBranch_symmetry(nn.Module):
-    """Custom U-Net architecture for Noise2Noise (see Appendix, Table 2)."""
-
+    
     def __init__(self, in_channels=3, out_channels=3,bias=False):
-        """Initializes U-Net."""
-
         super(UNet_emb_oneBranch_symmetry, self).__init__()
 
         self.cond1 = nn.Conv2d(in_channels,32,3,1,1,bias=True,padding_mode='reflect') 
@@ -88,8 +80,6 @@ class UNet_emb_oneBranch_symmetry(nn.Module):
 
 
     def _init_weights(self):
-        """Initializes weights using He et al. (2015)."""
-
         for m in self.modules():
             if isinstance(m, nn.ConvTranspose2d) or isinstance(m, nn.Conv2d):
                 #nn.init.kaiming_normal_(m.weight.data)

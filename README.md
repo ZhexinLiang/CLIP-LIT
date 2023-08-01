@@ -24,7 +24,7 @@
 </h4>
 </div>
 <div>
-    <img src="assets/Frankfurt_500resolution.gif" width="100%"/>
+    <img src="assets/Frankfurt.gif" width="100%"/>
 </div>
 
 <strong>CLIP-LIT trained using only hundreds of unpaired images yields favorable results on unseen backlit images captured in various scenarios.</strong>

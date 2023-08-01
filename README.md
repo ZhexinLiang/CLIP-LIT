@@ -16,7 +16,7 @@
 <div>
     :star: <strong>Accepted to ICCV 2023</strong>
 </div>
-
+<img src="assets/Frankfurt.gif" width="100%"/>
 <div>
 <h4 align="center">
   <a href="https://zhexinliang.github.io/CLIP_LIT_page/" target='_blank'>[Project Page]</a> •
@@ -46,7 +46,7 @@
 </tr>
 </table> -->
 
-:open_book: For more visual results, go checkout our <a href="https://zhexinliang.github.io/CLIP_LIT_page/" target="_blank">project page</a>
+:open_book: For more visual results, go checkout our <a href="https://zhexinliang.github.io/CLIP_LIT_page/" target="_blank">project page</a>.
 
 ---
 
@@ -55,7 +55,6 @@
 
 ## :mega: Updates
 - **2023.08.01**: Training codes, and initial checkpoints are public available now.
-- 
 - **2023.07.27**: Test codes, dataset and enhancement model checkpoint are public available now.
 
 

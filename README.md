@@ -23,10 +23,14 @@
         <a href="https://youtu.be/CHgLtcB9XUA" target='_blank'>[Demo Video]</a>
     </h4>
 </div>
-<div>
+
+https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/01e98e26-0782-419d-af2f-5a32ad15a6a8
+
+
+<!-- <div>
     <img align="left" src="assets/Frankfurt_small.gif" width="38%"/>
     <img src="assets/Dolomites_800.gif" width="50%"/>
-</div>
+</div> -->
 
 <!-- <div class="img">
     <video muted autoplay="autoplay" loop="loop" width="100%">

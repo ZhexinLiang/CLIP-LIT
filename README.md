@@ -17,13 +17,13 @@
     :star: <strong>Accepted to ICCV 2023</strong>
 </div>
 <div>
-<h4 align="center" style="margin-top:-4px;">
+<h4 align="center" style="margin-top:-10px;">
   <a href="https://zhexinliang.github.io/CLIP_LIT_page/" target='_blank'>[Project Page]</a> •
   <a href="https://arxiv.org/abs/2303.17569" target='_blank'>[arXiv]</a> •
   <a href="https://youtu.be/CHgLtcB9XUA" target='_blank'>[Demo Video]</a>
 </h4>
 </div>
-<img src="./assets/Frankfurt_500resolution.gif" width="100%"/>
+<img src="assets/Frankfurt_500resolution.gif" width="100%"/>
 
 <strong>CLIP-LIT trained using only hundreds of unpaired images yields favorable results on unseen backlit images captured in various scenarios.</strong>
 <!-- 

@@ -24,12 +24,11 @@
     </h4>
 </div>
 
-https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/01e98e26-0782-419d-af2f-5a32ad15a6a8
+https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/19798d86-41a0-4938-8853-08b49146bdf5
 
 
 <!-- <div>
-    <img align="left" src="assets/Frankfurt_small.gif" width="38%"/>
-    <img src="assets/Dolomites_800.gif" width="50%"/>
+    <img src="assets/Frankfurt_small.gif" width="100%"/>
 </div> -->
 
 <!-- <div class="img">

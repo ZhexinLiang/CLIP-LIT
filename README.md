@@ -16,8 +16,8 @@
 <div>
     :star: <strong>Accepted to ICCV 2023</strong>
 </div>
-<div>
-<h4 align="center" style="margin-top:-10px;">
+<div  style="margin-top:-50px;">
+<h4 align="center">
   <a href="https://zhexinliang.github.io/CLIP_LIT_page/" target='_blank'>[Project Page]</a> •
   <a href="https://arxiv.org/abs/2303.17569" target='_blank'>[arXiv]</a> •
   <a href="https://youtu.be/CHgLtcB9XUA" target='_blank'>[Demo Video]</a>

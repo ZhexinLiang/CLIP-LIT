@@ -24,9 +24,9 @@
     </h4>
 </div>
 
-https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/bba11a39-c5e1-4451-9c7c-5a5c4214ca55
-
 https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/a34f6808-e39e-4428-bb16-f607f80a8b9f
+
+https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/bba11a39-c5e1-4451-9c7c-5a5c4214ca55
 
 <!-- <div>
     <img src="assets/Frankfurt.gif" width="100%"/>

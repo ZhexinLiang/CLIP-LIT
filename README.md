@@ -26,6 +26,8 @@
 
 https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/a34f6808-e39e-4428-bb16-f607f80a8b9f
 
+https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/91b9fefd-2822-43a9-85d9-cd542875362a
+
 <!-- <div>
     <img src="assets/Frankfurt.gif" width="100%"/>
 </div> -->

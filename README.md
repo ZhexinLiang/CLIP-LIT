@@ -24,10 +24,11 @@
     </h4>
 </div>
 
-https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/19798d86-41a0-4938-8853-08b49146bdf5
+
+https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/c6fb9139-8dc7-44f0-a6cb-a91043af843c
 
 
-https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/3e8cc348-c6ba-4f8f-a3a0-d65c36f17850
+https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/bba11a39-c5e1-4451-9c7c-5a5c4214ca55
 
 
 <!-- <div>

@@ -127,7 +127,7 @@ python train.py
  --prompt_lr 0.000005                   \
  --eta_min 5e-6                         \
  --weight_decay 0.001                   \
- --num_epochs 2000                      \
+ --num_epochs 3000                      \
  --num_reconstruction_iters 1000        \
  --num_clip_pretrained_iters 8000       \
  --train_batch_size 8                   \

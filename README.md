@@ -20,7 +20,7 @@
     <h4 align="center">
         <a href="https://zhexinliang.github.io/CLIP_LIT_page/" target='_blank'>[Project Page]</a> •
         <a href="https://arxiv.org/abs/2303.17569" target='_blank'>[arXiv]</a> •
-        <a href="https://youtu.be/CHgLtcB9XUA" target='_blank'>[Demo Video]</a>
+        <a href="https://youtu.be/0qbkxNmkNWU" target='_blank'>[Demo Video]</a>
     </h4>
 </div>
 

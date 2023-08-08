@@ -47,10 +47,8 @@ def lowlight(image_path):
 	data_lowlight = data_lowlight.permute(2,0,1)
 	data_lowlight = data_lowlight.unsqueeze(0) 
 
-	# start = time.time()
 	light_map = U_net(data_lowlight)
 	enhanced_image = torch.clamp((data_lowlight / light_map), 0, 1)
-	# end_time = (time.time() - start)
 
 	image_path = args.output+os.path.basename(image_path)
 

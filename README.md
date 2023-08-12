@@ -123,7 +123,7 @@ There are other arugments you may want to change. You can change the hyperparame
 
 For example, you can use the following command to train from scratch.
 ```
-python train.py 
+python train.py \
  -b ./train_data/BAID_380/resize_input/ \
  -r ./train_data/DIV2K_384/             \
  --train_lr 0.00002                     \

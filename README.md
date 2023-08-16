@@ -66,8 +66,8 @@ https://github.com/ZhexinLiang/CLIP-LIT/assets/122451585/91b9fefd-2822-43a9-85d9
 </div>
 
 ## :mega: Updates
-- **2023.08.01**: Training codes, and initial checkpoints are public available now.
-- **2023.07.27**: Test codes, dataset and enhancement model checkpoint are public available now.
+- **2023.08.01**: Training codes, and initial checkpoints are publicly available now.
+- **2023.07.27**: Test codes, dataset and enhancement model checkpoint are publicly available now.
 
 
 ## :desktop_computer: Requirements
@@ -114,7 +114,7 @@ You should also download the initial prompt pair checkpoint (`init_prompt_pair.p
 
 After the data and the initial model weights are prepared, you can use the command to change the training data path, fine-tune the prompt and train the model.
 
-If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below.
+If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below. (not recommended)
  
 ### Commands
 Example usage:

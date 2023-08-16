@@ -114,7 +114,7 @@ You should also download the initial prompt pair checkpoint (`init_prompt_pair.p
 
 After the data and the initial model weights are prepared, you can use the command to change the training data path, fine-tune the prompt and train the model.
 
-If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below. (not recommended)
+If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below.
  
 ### Commands
 Example usage:

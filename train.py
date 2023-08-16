@@ -254,9 +254,9 @@ def train(config):
                         best_model=U_net
                         best_model_iter=total_iteration+1
                         print(max_score_psnr)
-                        inference(config.lowlight_images_path,'./'+task_name+'/result_'+task_name+'/result_jt_'+str(total_iteration+1)+"_psnr"+str(max_score_psnr)+'/',U_net,256)
+                        inference(config.lowlight_images_path,'./'+task_name+'/result_'+task_name+'/result_jt_'+str(total_iteration+1)+"_psnr"+str(max_score_psnr)[:8]+'/',U_net,256)
                         if total_iteration >config.num_reconstruction_iters+config.num_clip_pretrained_iters:
-                            semi_path[pr_semi_path]='./'+task_name+'/result_'+task_name+'/result_jt_'+str(total_iteration+1)+"_psnr"+str(max_score_psnr)+'/'
+                            semi_path[pr_semi_path]='./'+task_name+'/result_'+task_name+'/result_jt_'+str(total_iteration+1)+"_psnr"+str(max_score_psnr)[:8]+'/'
                             print(semi_path)
                         torch.save(U_net.state_dict(), config.train_snapshots_folder + "iter_" + str(total_iteration+1) + '.pth')   
 

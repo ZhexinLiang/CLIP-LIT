@@ -114,14 +114,16 @@ You should also download the initial prompt pair checkpoint (`init_prompt_pair.p
 
 After the data and the initial model weights are prepared, you can use the command to change the training data path, fine-tune the prompt and train the model.
 
+If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below.
+ 
 ### Commands
 Example usage:
 ```
 python train.py -b ./train_data/BAID_380/resize_input/ -r ./train_data/DIV2K_384/
 ```
-There are other arugments you may want to change. You can change the hyperparameters using the cmd line.
+There are other arguments you may want to change. You can change the hyperparameters using the cmd line.
 
-For example, you can use the following command to train from scratch.
+For example, you can use the following command to **train from scratch**.
 ```
 python train.py \
  -b ./train_data/BAID_380/resize_input/ \
@@ -155,7 +157,7 @@ If you find our work useful for your research, please consider citing the paper:
 ```
 
 ### Contact
-If you have any questions, please feel free to reach me out at `zhexinliang@gmail.com`. 
+If you have any questions, please feel free to reach out at `zhexinliang@gmail.com`. 
 
 <!-- ## :newspaper_roll: License
 

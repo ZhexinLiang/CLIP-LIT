@@ -13,27 +13,6 @@ import random
 import cv2
 import clip
 
-random.seed(1143)
-def random_generate_gaussian_noise(img, sigma_range=(0, 10), gray_prob=0):
-    sigma = np.random.uniform(sigma_range[0], sigma_range[1])
-    if np.random.uniform() < gray_prob:
-        gray_noise = True
-    else:
-        gray_noise = False
-    return generate_gaussian_noise(img, sigma, gray_noise)
-
-
-def random_add_gaussian_noise(img, sigma_range=(0, 1.0), gray_prob=0, clip=True, rounds=False):
-    noise = random_generate_gaussian_noise(img, sigma_range, gray_prob)
-    out = img + noise
-    if clip and rounds:
-        out = np.clip((out * 255.0).round(), 0, 255) / 255.
-    elif clip:
-        out = np.clip(out, 0, 1)
-    elif rounds:
-        out = (out * 255.0).round() / 255.
-    return out
-
 def transform_matrix_offset_center(matrix, x, y):
     """Return transform matrix offset center.
 
@@ -145,7 +124,7 @@ def populate_train_list(lowlight_images_path,normallight_images_path=None,overli
                     break
     train_list1=image_input_list
     train_list2=image_ref_list
-    print(train_list1)
+    # print(train_list1)
     random.shuffle(train_list1)
     random.shuffle(train_list2)
 
@@ -172,7 +151,7 @@ class lowlight_loader(data.Dataset):
         self.semi1_path=semi1_path
         self.semi2_path=semi2_path
         self.data_list = self.train_list1
-        print("Total training examples:", len(self.train_list1))
+        print("Total training examples (Well-lit):", len(self.train_list2))
         
 
     def __getitem__(self, index):

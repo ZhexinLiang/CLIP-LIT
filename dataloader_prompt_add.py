@@ -12,27 +12,6 @@ import random
 import cv2
 import clip
 
-random.seed(1143)
-def random_generate_gaussian_noise(img, sigma_range=(0, 10), gray_prob=0):
-	sigma = np.random.uniform(sigma_range[0], sigma_range[1])
-	if np.random.uniform() < gray_prob:
-		gray_noise = True
-	else:
-		gray_noise = False
-	return generate_gaussian_noise(img, sigma, gray_noise)
-
-
-def random_add_gaussian_noise(img, sigma_range=(0, 1.0), gray_prob=0, clip=True, rounds=False):
-	noise = random_generate_gaussian_noise(img, sigma_range, gray_prob)
-	out = img + noise
-	if clip and rounds:
-		out = np.clip((out * 255.0).round(), 0, 255) / 255.
-	elif clip:
-		out = np.clip(out, 0, 1)
-	elif rounds:
-		out = (out * 255.0).round() / 255.
-	return out
-
 def transform_matrix_offset_center(matrix, x, y):
 	"""Return transform matrix offset center.
 
@@ -82,8 +61,6 @@ def zoom(x, zx, zy, row_axis=0, col_axis=1):
 	matrix = transform_matrix_offset_center(zoom_matrix, h, w) 
 	x = cv2.warpAffine(x, matrix[:2, :], (w, h),flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT, borderValue=(0,0,0),)
 	return x
-
-
 
 def augmentation(img1,img2):
 	hflip=random.random() < 0.5
@@ -154,12 +131,11 @@ def populate_train_list(lowlight_images_path,normallight_images_path,overlight_i
 						break
 		
 		train_list = image_input_list+image_ref_list
-	print(train_list)
+	# print(train_list)
 	random.shuffle(train_list)
 
 	return train_list
 
-	
 
 class lowlight_loader(data.Dataset):
 
@@ -167,11 +143,11 @@ class lowlight_loader(data.Dataset):
 		if overlight_images_path!=None:
 			self.train_list = populate_train_list(lowlight_images_path,normallight_images_path,overlight_images_path)
 		else:
-			self.train_list = populate_train_list(lowlight_images_path,normallight_images_path)#,'/mnt/lustre/cyli/pyuser/Lzx/data/Overexosed datasets/')#,overlight_images_path) 
+			self.train_list = populate_train_list(lowlight_images_path,normallight_images_path)
 		self.size = 256
 
 		self.data_list = self.train_list
-		print("Total training examples:", len(self.train_list))
+		print("Total training examples (max(Backlit,Well-lit)*2):", len(self.train_list))
 
 
 		

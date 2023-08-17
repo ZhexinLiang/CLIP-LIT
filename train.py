@@ -68,11 +68,11 @@ class TextEncoder(nn.Module):
 class Prompts(nn.Module):
     def __init__(self,initials=None):
         super(Prompts,self).__init__()
-        print(initials)
+        print("The initial prompts are:",initials)
         self.text_encoder = TextEncoder(model)
         if isinstance(initials,list):
             text = clip.tokenize(initials).cuda()
-            print(text)
+            # print(text)
             self.embedding_prompt = nn.Parameter(model.token_embedding(text).requires_grad_()).cuda()
         elif isinstance(initials,str):
             prompt_path=initials
@@ -136,14 +136,14 @@ def train(config):
         learn_prompt=Prompts([" ".join(["X"]*(config.length_prompt))," ".join(["X"]*(config.length_prompt))]).cuda()
     learn_prompt =  torch.nn.DataParallel(learn_prompt)
     U_net.apply(weights_init)
-    for name, parms in learn_prompt.named_parameters():    
-        if parms.requires_grad==True:
-            print('\nBefore backward\n')
-            print('-->name:', name)
-            print('-->para:', parms)
-            print('-->grad_requirs:',parms.requires_grad)
-            print('-->grad_value:',parms.grad)
-            print("===========================")
+    # for name, parms in learn_prompt.named_parameters():    
+    #     if parms.requires_grad==True:
+    #         print('\nBefore backward\n')
+    #         print('-->name:', name)
+    #         print('-->para:', parms)
+    #         print('-->grad_requirs:',parms.requires_grad)
+    #         print('-->grad_value:',parms.grad)
+    #         print("===========================")
     #add pretrained model weights
     if config.load_pretrain == True:
         config.num_reconstruction_iters=0
@@ -426,9 +426,9 @@ if __name__ == "__main__":
     parser.add_argument('--prompt_snapshot_iter', type=int, default=100)
     parser.add_argument('--train_snapshots_folder', type=str, default="./"+task_name+"/"+"snapshots_train_"+task_name+"/")
     parser.add_argument('--prompt_snapshots_folder', type=str, default="./"+task_name+"/"+"snapshots_prompt_"+task_name+"/")
-    parser.add_argument('--load_pretrain', type=bool, default= True)
+    parser.add_argument('--load_pretrain', type=lambda x: (str(x).lower() == 'true'), default= True)
     parser.add_argument('--pretrain_dir', type=str, default= './pretrained_models/init_pretrained_models/init_enhancement_model.pth')
-    parser.add_argument('--load_pretrain_prompt', type=bool, default= True)
+    parser.add_argument('--load_pretrain_prompt', type=lambda x: (str(x).lower() == 'true'), default= True)
     parser.add_argument('--prompt_pretrain_dir', type=str, default= './pretrained_models/init_pretrained_models/init_prompt_pair.pth')
     
     config = parser.parse_args()

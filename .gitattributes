@@ -1,3 +1,0 @@
-*prompt_pair.pth filter=lfs diff=lfs merge=lfs -text
-Frankfurt.gif filter=lfs diff=lfs merge=lfs -text
-*.gif filter=lfs diff=lfs merge=lfs -text

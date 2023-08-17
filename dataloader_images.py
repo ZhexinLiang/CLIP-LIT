@@ -100,12 +100,6 @@ def preprocess_aug(img1,img2):
 	img2 = Image.fromarray(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB))
 	return img1,img2
 
-def get_Lchannel(img):
-	img = np.uint8((np.asarray(img)))
-	lab = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2LAB)
-	img_L,A,B=cv2.split(lab)
-	return img_L
-
 device = "cpu"#"cuda" if torch.cuda.is_available() else "cpu"
 #load clip
 
@@ -137,7 +131,7 @@ class lowlight_loader(data.Dataset):
 		self.size = 512
 
 		self.data_list = self.train_list
-		print("Total training examples:", len(self.train_list))
+		print("Total training examples (Backlit):", len(self.train_list))
 
 
 	def __getitem__(self, index):

@@ -14,7 +14,7 @@
 </div>
 
 <div>
-    :star: <strong>Accepted to ICCV 2023</strong>
+    :star: <strong>Accepted to ICCV 2023, Oral</strong>
 </div>
 <div>
     <h4 align="center">
@@ -114,7 +114,7 @@ You should also download the initial prompt pair checkpoint (`init_prompt_pair.p
 
 After the data and the initial model weights are prepared, you can use the command to change the training data path, fine-tune the prompt and train the model.
 
-If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below.
+If you don't want to download the initial prompt pair, you can train without the initial checkpoints using the command below. But in this way, the number of the total iterations should be at least $50K$ based on our experiments.
  
 ### Commands
 Example usage:

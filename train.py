@@ -112,7 +112,7 @@ class Prompts(nn.Module):
 def weights_init(m):
     classname = m.__class__.__name__ 
     if classname.find('Conv') != -1:
-        m.weight.data.normal_(0.0, 0.03)
+        m.weight.data.normal_(0.0, 0.02)
     elif classname.find('BatchNorm') != -1:
         m.weight.data.normal_(1.0, 0.02)
         m.bias.data.fill_(0)
@@ -193,6 +193,7 @@ def train(config):
     best_prompt_iter=0
     best_model_iter=0
     rounds=0
+    reconstruction_iter=0
     
     #Start training!
     for epoch in range(config.num_epochs):
@@ -242,6 +243,13 @@ def train(config):
                 with torch.no_grad():
                     if total_iteration<config.num_reconstruction_iters+config.num_clip_pretrained_iters:
                         score_psnr[pr_last_few_iter] = torch.mean(iqa_metric(img_lowlight, final))
+                        reconstruction_iter+=1
+                        if sum(score_psnr).item()/30.0 < 10 and reconstruction_iter >100:
+                            print(sum(score_psnr).item()/30.0)
+                            print("reinitialization...")
+                            U_net.apply(weights_init)
+                            reconstruction_iter=0
+                            config.num_reconstruction_iters+=100
                     else:
                         score_psnr[pr_last_few_iter] = -loss
 

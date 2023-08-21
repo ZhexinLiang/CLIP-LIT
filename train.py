@@ -129,6 +129,8 @@ def train(config):
     U_net=model_small.UNet_emb_oneBranch_symmetry_noreflect(3,1).cuda()
   
     iqa_metric = pyiqa.create_metric('psnr', test_y_channel=True, color_space='ycbcr').to(device)
+    
+    #add pretrained model weights
     if config.load_pretrain_prompt == True:
         learn_prompt=Prompts(config.prompt_pretrain_dir).cuda()
         torch.save(learn_prompt.state_dict(), config.prompt_snapshots_folder + "pretrained_prompt" + '.pth')
@@ -139,7 +141,7 @@ def train(config):
         learn_prompt=Prompts([" ".join(["X"]*(config.length_prompt))," ".join(["X"]*(config.length_prompt))]).cuda()
     learn_prompt =  torch.nn.DataParallel(learn_prompt)
     U_net.apply(weights_init)
-    #add pretrained model weights
+    
     if config.load_pretrain == True:
         print("The load_pretrain is True, thus num_reconstruction_iters is automatically set to 0.")
         config.num_reconstruction_iters=0
@@ -157,6 +159,7 @@ def train(config):
             print("WARNING: For training from scratch, num_reconstruction_iters should not lower than 200 iterations!\nAutomatically reset num_reconstruction_iters to 1000 iterations...")
             config.num_reconstruction_iters=1000
     U_net= torch.nn.DataParallel(U_net)
+    
     #load dataset
     train_dataset = dataloader_sharp.lowlight_loader(config.lowlight_images_path,config.overlight_images_path)    #dataloader
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=config.train_batch_size, shuffle=True, num_workers=config.num_workers, pin_memory=True)

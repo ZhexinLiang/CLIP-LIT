@@ -30,7 +30,7 @@ import shutil
 task_name="train0"
 writer = SummaryWriter('./'+task_name+"/"+'tensorboard_'+task_name)
 
-dstpath="./"+task_name+"/"+"train_scripts"+"/"+"train.py"
+dstpath="./"+task_name+"/"+"train_scripts"
 if not os.path.exists(dstpath):
     os.makedirs(dstpath)
 shutil.copy("train.py",dstpath)
@@ -133,19 +133,15 @@ def train(config):
         learn_prompt=Prompts(config.prompt_pretrain_dir).cuda()
         torch.save(learn_prompt.state_dict(), config.prompt_snapshots_folder + "pretrained_prompt" + '.pth')
     else:
+        if config.num_clip_pretrained_iters < 3000:
+            print("WARNING: For training from scratch, num_clip_pretrained_iters should not lower than 3000 iterations!\nAutomatically reset num_clip_pretrained_iters to 8000 iterations...")
+            config.num_clip_pretrained_iters=8000
         learn_prompt=Prompts([" ".join(["X"]*(config.length_prompt))," ".join(["X"]*(config.length_prompt))]).cuda()
     learn_prompt =  torch.nn.DataParallel(learn_prompt)
     U_net.apply(weights_init)
-    # for name, parms in learn_prompt.named_parameters():    
-    #     if parms.requires_grad==True:
-    #         print('\nBefore backward\n')
-    #         print('-->name:', name)
-    #         print('-->para:', parms)
-    #         print('-->grad_requirs:',parms.requires_grad)
-    #         print('-->grad_value:',parms.grad)
-    #         print("===========================")
     #add pretrained model weights
     if config.load_pretrain == True:
+        print("The load_pretrain is True, thus num_reconstruction_iters is automatically set to 0.")
         config.num_reconstruction_iters=0
         state_dict = torch.load(config.pretrain_dir)
         # create new OrderedDict that does not contain `module.`
@@ -156,6 +152,10 @@ def train(config):
         U_net.load_state_dict(new_state_dict)
         #U_net.load_state_dict(torch.load(config.pretrain_dir))
         torch.save(U_net.state_dict(), config.train_snapshots_folder + "pretrained_network" + '.pth')
+    else:
+        if config.num_reconstruction_iters<200:
+            print("WARNING: For training from scratch, num_reconstruction_iters should not lower than 200 iterations!\nAutomatically reset num_reconstruction_iters to 1000 iterations...")
+            config.num_reconstruction_iters=1000
     U_net= torch.nn.DataParallel(U_net)
     #load dataset
     train_dataset = dataloader_sharp.lowlight_loader(config.lowlight_images_path,config.overlight_images_path)    #dataloader
@@ -194,6 +194,7 @@ def train(config):
     best_model_iter=0
     rounds=0
     reconstruction_iter=0
+    reinit_flag=0
     
     #Start training!
     for epoch in range(config.num_epochs):
@@ -244,12 +245,8 @@ def train(config):
                     if total_iteration<config.num_reconstruction_iters+config.num_clip_pretrained_iters:
                         score_psnr[pr_last_few_iter] = torch.mean(iqa_metric(img_lowlight, final))
                         reconstruction_iter+=1
-                        if sum(score_psnr).item()/30.0 < 10 and reconstruction_iter >100:
-                            print(sum(score_psnr).item()/30.0)
-                            print("reinitialization...")
-                            U_net.apply(weights_init)
-                            reconstruction_iter=0
-                            config.num_reconstruction_iters+=100
+                        if sum(score_psnr).item()/30.0 < 8 and reconstruction_iter >100:
+                            reinit_flag=1
                     else:
                         score_psnr[pr_last_few_iter] = -loss
 
@@ -267,7 +264,20 @@ def train(config):
                             semi_path[pr_semi_path]='./'+task_name+'/result_'+task_name+'/result_jt_'+str(total_iteration+1)+"_psnr"+str(max_score_psnr)[:8]+'/'
                             print(semi_path)
                         torch.save(U_net.state_dict(), config.train_snapshots_folder + "iter_" + str(total_iteration+1) + '.pth')   
-
+                if reinit_flag == 1:
+                    print(sum(score_psnr).item()/30.0)
+                    print("reinitialization...")
+                    seed=random.randint(0,100000)
+                    print("current random seed: ",seed)
+                    torch.cuda.manual_seed_all(seed)
+                    U_net=model_small.UNet_emb_oneBranch_symmetry_noreflect(3,1).cuda()
+                    U_net.apply(weights_init)
+                    U_net= torch.nn.DataParallel(U_net)
+                    reconstruction_iter=0
+                    train_optimizer = torch.optim.Adam(U_net.parameters(), lr=config.train_lr, weight_decay=config.weight_decay)
+                    config.num_reconstruction_iters+=100
+                    reinit_flag=0
+                
                 if ((total_iteration+1) % config.display_iter) == 0:
                     print("training current learning rate: ",train_optimizer.state_dict()['param_groups'][0]['lr'])
                     print("Loss at iteration", total_iteration+1,"epoch",epoch, ":", loss.item())

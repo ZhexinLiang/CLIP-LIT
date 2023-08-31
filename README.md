@@ -148,11 +148,11 @@ python train.py \
 ## :love_you_gesture: Citation
 If you find our work useful for your research, please consider citing the paper:
 ```
-@inproceedings{liang2023cliplit,
-        author = {Liang, Zhexin and Li, Chongyi and Zhou, Shangchen and Feng, Ruicheng and Loy, Chen Change},
-        title = {Iterative Prompt Learning for Unsupervised Backlit Image Enhancement},
-        booktitle = {ICCV},
-        year = {2023}
+@article{liang2023iterative,
+  title={Iterative Prompt Learning for Unsupervised Backlit Image Enhancement},
+  author={Liang, Zhexin and Li, Chongyi and Zhou, Shangchen and Feng, Ruicheng and Loy, Chen Change},
+  journal={arXiv preprint arXiv:2303.17569},
+  year={2023}
 }
 ```
 

@@ -3,7 +3,6 @@ numpy==1.21.5
 opencv_python==4.6.0.66
 Pillow==9.2.0
 pyiqa==0.1.4
-pyiqa.egg==info
 regex==2022.8.17
 setuptools==63.4.1
 torch==1.13.1

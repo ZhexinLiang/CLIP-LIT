@@ -144,6 +144,22 @@ python train.py \
  --load_pretrain False                  \
  --load_pretrain_prompt False
 ```
+Here are the explanation for important arguments:
+- `b`: path to the input images (backlit images).
+- `r`: path to the reference images (well-lit images).
+- `train_lr`: the learning rate for the enhancement model training.
+- `prompt_lr`: the learning rate for the prompt pair learning.
+- `num_epochs`: the number of total training epoches. For the default setting, 1 epoch = $\frac{number\ of\ training\ images}{batch\ size}$ = 46 iteartions. 
+- `num_reconstruction_iters`: the number of iterations for the reconstruction stage of the enhancement network (i.e. the initial enhancement network training), included in the `num_epochs`.
+- `num_clip_pretrained_iters`: the number of iterations for the prompt initialization, included in the `num_epochs`.
+- `train_batch_size`: the batch size for the enhancement model training.
+- `prompt_batch_size`: the batch size for the prompt pair training.
+- `display_iter`: the frequency to display the training log during the enhancement model training.
+- `snapshot_iter`: the frequency to save the checkpoint during the enhancement model training.
+- `prompt_display_iter`: the frequency to display the training log during the prompt pair learning.
+- `prompt_snapshot_iter`: the frequency to save the checkpoint during the prompt pair learning.
+- `load_pretrain`: whether to load the pretrained enhancement model.
+- `load_pretrain_prompt`: whether to load the pretrained prompt pair.
 
 ## :love_you_gesture: Citation
 If you find our work useful for your research, please consider citing the paper:
